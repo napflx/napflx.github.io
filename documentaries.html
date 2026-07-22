@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archive Cinema - Browse Categories</title>
+  <style>
+    :root {
+      --bg-color: #0f1117;
+      --card-bg: #1a1d24;
+      --accent-color: #6366f1;
+      --accent-hover: #4f46e5;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: #2e333d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    header h1 span {
+      color: var(--accent-color);
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      background-color: rgba(99, 102, 241, 0.15);
+      color: var(--accent-color);
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .hero-section {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .hero-section h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-section p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .category-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-color);
+      box-shadow: 0 12px 25px rgba(99, 102, 241, 0.15);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(99, 102, 241, 0.1);
+      border-radius: 10px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .card-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card-footer .item-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .card-footer .play-btn {
+      color: var(--accent-color);
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .category-card:hover .play-btn {
+      color: var(--text-main);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><span>📼</span> Archive Cinema</h1>
+    <span class="badge">Hosted on GitHub Pages</span>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <h2>Explore the Vault</h2>
+      <p>Select a category below to launch the video player and browse curated public-domain media hosted on the Internet Archive.</p>
+    </section>
+
+    <section class="category-grid">
+      <!-- Category 1 -->
+      <a href="ancientaliens.html" class="category-card">
+        <div class="card-icon">📽️</div>
+        <div class="card-content">
+          <h3>Ancient Aliens</h3>
+        </div>
+        <div class="card-footer">
+          <span class="item-count">Collection</span>
+          <span class="play-btn">Open Player &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Category 2 -->
+      <a href="Cosmos.html" class="category-card">
+        <div class="card-icon">🙏</div>
+        <div class="card-content">
+          <h3>Cosmos</h3>
+        </div>
+        <div class="card-footer">
+          <span class="item-count">Collection</span>
+          <span class="play-btn">Open Player &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Category 3 -->
+      <a href="billnye.html" class="category-card">
+        <div class="card-icon">🎵</div>
+        <div class="card-content">
+          <h3>Bill Nye the Science Guy</h3>
+        </div>
+        <div class="card-footer">
+          <span class="item-count">Collection</span>
+          <span class="play-btn">Open Player &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Category 4 -->
+      <a href="comedy.html" class="category-card">
+        <div class="card-icon">📺</div>
+        <div class="card-content">
+          <h3>Comedy &amp; Ads</h3>
+          <p>Classic TV comedies</p>
+        </div>
+        <div class="card-footer">
+          <span class="item-count">Collection</span>
+          <span class="play-btn">Open Player &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Category 5 -->
+      <a href="animation.html" class="category-card">
+        <div class="card-icon">🎨</div>
+        <div class="card-content">
+          <h3>Animation &amp; Cartoons</h3>
+          <p>Early animated shorts, classic cartoon series, and experimental animated works.</p>
+        </div>
+        <div class="card-footer">
+          <span class="item-count">Collection</span>
+          <span class="play-btn">Open Player &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Category 6 -->
+      <a href="science.html" class="category-card">
+        <div class="card-icon">🔬</div>
+        <div class="card-content">
+          <h3>Science &amp; Tech</h3>
+          <p>Space exploration footage, technology demos, computing history, and lectures.</p>
+        </div>
+        <div class="card-footer">
+          <span class="item-count">Collection</span>
+          <span class="play-btn">Open Player &rarr;</span>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    Powered by Internet Archive &amp; GitHub Pages
+  </footer>
+
+</body>
+</html>

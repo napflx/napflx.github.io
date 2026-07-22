@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archive Cinema</title>
+  <style>
+    :root {
+      --bg-color: #0f1117;
+      --card-bg: #1a1d24;
+      --accent-color: #6366f1;
+      --accent-hover: #4f46e5;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: #2e333d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    header h1 span {
+      color: var(--accent-color);
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      background-color: rgba(99, 102, 241, 0.15);
+      color: var(--accent-color);
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2rem;
+    }
+
+    @media (max-width: 960px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .player-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .video-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-color);
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-info {
+      background-color: var(--card-bg);
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .video-info h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .video-info p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .playlist-section {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.25rem;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: fit-content;
+    }
+
+    .playlist-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .playlist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .playlist-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.85rem;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .playlist-item:hover {
+      background-color: rgba(99, 102, 241, 0.1);
+      border-color: var(--accent-color);
+    }
+
+    .playlist-item.active {
+      background-color: rgba(99, 102, 241, 0.2);
+      border-color: var(--accent-color);
+    }
+
+    .playlist-item h3 {
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .playlist-item span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><span>📼</span> Archive Cinema</h1>
+    <span class="badge">Hosted on GitHub Pages</span>
+  </header>
+
+  <main>
+    <section class="player-section">
+      <div class="video-container">
+        <iframe id="main-player" src="" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+      </div>
+      <div class="video-info">
+        <h2 id="video-title">Loading...</h2>
+        <p id="video-description"></p>
+      </div>
+    </section>
+
+    <aside class="playlist-section">
+      <div class="playlist-title">Vault Collection</div>
+      <div class="playlist-items" id="playlist">
+        <!-- Javascript populates playlist here -->
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    Powered by Internet Archive &amp; GitHub Pages
+  </footer>
+
+  <script>
+    // Paste either:
+    // 1. Full embed link: "https://archive.org/embed/cloning-the-woolly-mammoth-2016"
+    // 2. Raw iframe tag: '<iframe src="https://archive.org/embed/..." ...></iframe>'
+    const videos = [
+      {
+        embed: "https://archive.org/embed/cloning-the-woolly-mammoth-2016",
+        title: "Cloning the Woolly Mammoth",
+        year: "2016 • Science / Documentary",
+        description: "A deep dive into the scientific possibilities, ethics, and technology behind de-extinction efforts."
+      },
+      {
+        embed: "https://archive.org/embed/night_of_the_living_dead",
+        title: "Night of the Living Dead",
+        year: "1968 • Horror / Sci-Fi",
+        description: "George A. Romero's iconic classic. A ragtag group barricades themselves in an old farmhouse to survive."
+      },
+      {
+        embed: "https://archive.org/embed/A_Trip_To_The_Moon_1902",
+        title: "A Trip to the Moon",
+        year: "1902 • Sci-Fi / Short",
+        description: "Georges Méliès' silent masterpiece following astronomers traveling to the Moon in a cannon-propelled capsule."
+      }
+    ];
+
+    const player = document.getElementById('main-player');
+    const titleEl = document.getElementById('video-title');
+    const descEl = document.getElementById('video-description');
+    const playlistEl = document.getElementById('playlist');
+
+    // Helper to extract the source URL if the user pastes raw <iframe> HTML code
+    function parseEmbedUrl(input) {
+      if (input.includes('<iframe')) {
+        const match = input.match(/src=["']([^"']+)["']/);
+        return match ? match[1] : '';
+      }
+      return input.trim();
+    }
+
+    function loadVideo(index) {
+      const video = videos[index];
+      player.src = parseEmbedUrl(video.embed);
+      titleEl.textContent = video.title;
+      descEl.textContent = video.description;
+
+      document.querySelectorAll('.playlist-item').forEach((item, i) => {
+        if (i === index) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    // Render playlist items dynamically
+    videos.forEach((video, index) => {
+      const item = document.createElement('div');
+      item.className = 'playlist-item';
+      item.innerHTML = `
+        <h3>${video.title}</h3>
+        <span>${video.year}</span>
+      `;
+      item.onclick = () => loadVideo(index);
+      playlistEl.appendChild(item);
+    });
+
+    // Initialize with the first video
+    loadVideo(0);
+  </script>
+</body>
+</html>
